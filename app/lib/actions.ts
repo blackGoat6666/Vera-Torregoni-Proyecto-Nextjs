@@ -68,8 +68,8 @@ export type State = {
     }
    
     // Revalidate the cache for the facturas page and redirect the user.
-    revalidatePath('/dashboard/facturas');
-    redirect('/dashboard/facturas');
+    revalidatePath('/facturas');
+    redirect('/facturas');
   }
 
   export async function updateInvoice(id: string, formData: FormData) {
@@ -91,14 +91,14 @@ export type State = {
       return { message: 'Database Error: Failed to Update Invoice.' };
     }
    
-    revalidatePath('/dashboard/facturas');
-    redirect('/dashboard/facturas');
+    revalidatePath('/facturas');
+    redirect('/facturas');
   }
 
   export async function deleteInvoice(id: string) {
     try {
       await sql`DELETE FROM facturas WHERE id = ${id}`;
-      revalidatePath('/dashboard/facturas');
+      revalidatePath('/facturas');
       return { message: 'Deleted Invoice.' };
     } catch (error) {
       return { message: 'Database Error: Failed to Delete Invoice.' };
