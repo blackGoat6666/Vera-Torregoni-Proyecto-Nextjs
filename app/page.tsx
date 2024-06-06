@@ -5,49 +5,94 @@ import styles from '@/app/ui/home.module.css';
 import { inter, lusitana } from '@/app/ui/fonts';
 import Image from 'next/image';
 
+
+const products = [
+  {
+    id: 1,
+    name: 'Yerba',
+    href: '#',
+    price: '$48',
+    imageSrc: '/yerba.png',
+    imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+  },
+  {
+    id: 2,
+    name: 'Poroto',
+    href: '#',
+    price: '$35',
+    imageSrc:  '/porotos.png',
+    imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+  },
+  {
+    id: 3,
+    name: 'Lenteja',
+    href: '#',
+    price: '$89',
+    imageSrc:  '/lentejas.png',
+    imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+  },
+  {
+    id: 4,
+    name: 'Alfajor',
+    href: '#',
+    price: '$35',
+    imageSrc:  '/alfajor.png',
+    imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+  },
+  {
+    id: 2,
+    name: 'Poroto',
+    href: '#',
+    price: '$35',
+    imageSrc:  '/porotos.png',
+    imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+  },
+  {
+    id: 3,
+    name: 'Lenteja',
+    href: '#',
+    price: '$89',
+    imageSrc:  '/lentejas.png',
+    imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+  },
+  {
+    id: 4,
+    name: 'Alfajor',
+    href: '#',
+    price: '$35',
+    imageSrc:  '/alfajor.png',
+    imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+  },
+  // More products...
+]
+
+
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        <AcmeLogo />
-      </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <div
-              className="h-0 w-0 border-b-[30px] border-l-[20px] border-r-[20px] border-b-black border-l-transparent border-r-transparent"
-          />
-          <p className={ `${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
+<div className="bg-white">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 className={`${lusitana.className} text-5xl font-bold tracking-tight text-center text-blue-600 hover:text-blue-400`}>
+        Products
+      </h2>
+
+
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          {products.map((product) => (
+            <a key={product.id} href={product.href} className="group">
+              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+              <Image
+                src={product.imageSrc}
+                alt={product.imageAlt}
+                width={500}
+                height={300}
+                />
+              </div>
+              <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
+              <p className="mt-1 text-lg font-medium text-gray-900">{product.price}</p>
             </a>
-            , brought to you by Vercel.
-          </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
-          >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
-        </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
-          <Image
-            src="/hero-desktop.png"
-            width={1000}
-            height={760}
-            className="hidden md:block"
-            alt="Screenshots of the dashboard project showing desktop version"
-          />
-          <Image
-            src="/hero-mobile.png"
-            width={560}
-            height={620}
-            className="block md:hidden"
-            alt="Screenshot of the dashboard project showing mobile version"
-          />
+          ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
