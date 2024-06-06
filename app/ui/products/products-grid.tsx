@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { lusitana } from '../fonts';
 
 const products = [
     {
@@ -62,6 +63,12 @@ const products = [
 
   export default function ProductsGrid() {
     return (   
+      <div>
+        <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-5 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
+          <h2 className={`${lusitana.className} text-5xl font-bold tracking-tight text-center text-white`}>
+            Productos
+          </h2>
+        </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-2 pt-8">
           {products.map((product) => (
             <a key={product.id} href={product.href} className="group">
@@ -78,5 +85,6 @@ const products = [
             </a>
           ))}
         </div>
+      </div>
     )
   }
