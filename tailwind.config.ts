@@ -17,16 +17,22 @@ const config: Config = {
           500: '#0070F3',
           600: '#2F6FEB',
         },
+        pastelGreen: {
+          DEFAULT: '#77dd77',
+          dark: '#6ccf6c',
+          darker: '#5fb85f',
+        },
       },
-    },
-    keyframes: {
-      shimmer: {
-        '100%': {
-          transform: 'translateX(100%)',
+      keyframes: {
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)',
+          },
         },
       },
     },
   },
   plugins: [require('@tailwindcss/forms')],
 };
+
 export default config;
