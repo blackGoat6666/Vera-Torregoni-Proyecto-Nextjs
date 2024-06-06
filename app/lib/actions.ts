@@ -57,7 +57,7 @@ export type State = {
     // Insert data into the database
     try {
       await sql`
-        INSERT INTO invoices (customer_id, amount, status, date)
+        INSERT INTO facturas (customer_id, amount, status, date)
         VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
       `;
     } catch (error) {
@@ -67,9 +67,9 @@ export type State = {
       };
     }
    
-    // Revalidate the cache for the invoices page and redirect the user.
-    revalidatePath('/dashboard/invoices');
-    redirect('/dashboard/invoices');
+    // Revalidate the cache for the facturas page and redirect the user.
+    revalidatePath('/dashboard/facturas');
+    redirect('/dashboard/facturas');
   }
 
   export async function updateInvoice(id: string, formData: FormData) {
@@ -83,7 +83,7 @@ export type State = {
    
     try {
       await sql`
-          UPDATE invoices
+          UPDATE facturas
           SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
           WHERE id = ${id}
         `;
@@ -91,14 +91,14 @@ export type State = {
       return { message: 'Database Error: Failed to Update Invoice.' };
     }
    
-    revalidatePath('/dashboard/invoices');
-    redirect('/dashboard/invoices');
+    revalidatePath('/dashboard/facturas');
+    redirect('/dashboard/facturas');
   }
 
   export async function deleteInvoice(id: string) {
     try {
-      await sql`DELETE FROM invoices WHERE id = ${id}`;
-      revalidatePath('/dashboard/invoices');
+      await sql`DELETE FROM facturas WHERE id = ${id}`;
+      revalidatePath('/dashboard/facturas');
       return { message: 'Deleted Invoice.' };
     } catch (error) {
       return { message: 'Database Error: Failed to Delete Invoice.' };
