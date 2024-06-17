@@ -64,7 +64,7 @@ const products = [
   export default function ProductsGrid() {
     return (   
       <div>
-        <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-5 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
+        <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-6 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
           <h2 className={`${lusitana.className} text-5xl font-bold tracking-tight text-center text-white`}>
             Productos
           </h2>
