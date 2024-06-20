@@ -1,66 +1,6 @@
 import Image from 'next/image';
 import { lusitana } from '../fonts';
 
-const products = [
-    {
-      id: 1,
-      name: 'Yerba',
-      href: '#',
-      price: '$48',
-      imageSrc: '/yerba.png',
-      imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-    },
-    {
-      id: 2,
-      name: 'Poroto',
-      href: '#',
-      price: '$35',
-      imageSrc:  '/porotos.png',
-      imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-    },
-    {
-      id: 3,
-      name: 'Lenteja',
-      href: '#',
-      price: '$89',
-      imageSrc:  '/lentejas.png',
-      imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-    },
-    {
-      id: 4,
-      name: 'Alfajor',
-      href: '#',
-      price: '$35',
-      imageSrc:  '/alfajor.png',
-      imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-    },
-    {
-      id: 5,
-      name: 'Poroto',
-      href: '#',
-      price: '$35',
-      imageSrc:  '/porotos.png',
-      imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-    },
-    {
-      id: 6,
-      name: 'Lenteja',
-      href: '#',
-      price: '$89',
-      imageSrc:  '/lentejas.png',
-      imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-    },
-    {
-      id: 7,
-      name: 'Alfajor',
-      href: '#',
-      price: '$35',
-      imageSrc:  '/alfajor.png',
-      imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-    },
-    // More products...
-  ]
-
   export default function ProductsGrid() {
     return (   
       <div>

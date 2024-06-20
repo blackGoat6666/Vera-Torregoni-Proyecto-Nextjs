@@ -4,6 +4,7 @@ const {
   customers,
   revenue,
   users,
+  products,
 } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
@@ -11,6 +12,10 @@ async function seedUsers(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
     // Create the "users" table if it doesn't exist
+    await client.sql`TRUNCATE TABLE users RESTART IDENTITY;`;
+
+    console.log(`Truncated "users" table`);
+
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS users (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -49,6 +54,10 @@ async function seedUsers(client) {
 async function seedInvoices(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+    await client.sql`TRUNCATE TABLE invoices RESTART IDENTITY;`;
+
+    console.log(`Truncated "invoices" table`);
 
     // Create the "invoices" table if it doesn't exist
     const createTable = await client.sql`
@@ -90,6 +99,10 @@ async function seedCustomers(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
+    await client.sql`TRUNCATE TABLE customers RESTART IDENTITY;`;
+
+    console.log(`Truncated "customers" table`);
+
     // Create the "customers" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS customers (
@@ -127,6 +140,10 @@ async function seedCustomers(client) {
 
 async function seedRevenue(client) {
   try {
+
+    await client.sql`TRUNCATE TABLE revenue RESTART IDENTITY;`;
+
+    console.log(`Truncated "revenue" table`);
     // Create the "revenue" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS revenue (
@@ -160,6 +177,50 @@ async function seedRevenue(client) {
   }
 }
 
+async function seedProducts(client) {
+  try {
+
+    await client.sql`TRUNCATE TABLE products RESTART IDENTITY;`;
+
+    console.log(`Truncated "products" table`);
+    // Crear la tabla "products" si no existe
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS products (
+        id INT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        href VARCHAR(255) NOT NULL,
+        price VARCHAR(10) NOT NULL,
+        image_src VARCHAR(255) NOT NULL,
+        image_alt TEXT NOT NULL
+      );
+    `;
+
+    console.log(`Created "products" table`);
+
+    // Insertar datos en la tabla "products"
+    const insertedProducts = await Promise.all(
+      products.map(
+        (product) => client.sql`
+        INSERT INTO products (id, name, href, price, image_src, image_alt)
+        VALUES (${product.id}, ${product.name}, ${product.href}, ${product.price}, ${product.imageSrc}, ${product.imageAlt})
+        ON CONFLICT (id) DO NOTHING;
+      `,
+      ),
+    );
+
+    console.log(`Seeded ${insertedProducts.length} products`);
+
+    return {
+      createTable,
+      products: insertedProducts,
+    };
+  } catch (error) {
+    console.error('Error seeding products:', error);
+    throw error;
+  }
+}
+
+
 async function main() {
   const client = await db.connect();
 
@@ -167,6 +228,7 @@ async function main() {
   await seedCustomers(client);
   await seedInvoices(client);
   await seedRevenue(client);
+  await seedProducts(client);
 
   await client.end();
 }
