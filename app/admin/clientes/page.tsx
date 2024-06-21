@@ -1,6 +1,6 @@
-import SideNav from "@/app/ui/dashboard/sidenav";
+import SideNav from "@/app/ui/admin/sidenav";
 
 export default function Page() {
-    return <SideNav></SideNav>;
+    return <p>Clientes</p>;
 
   }

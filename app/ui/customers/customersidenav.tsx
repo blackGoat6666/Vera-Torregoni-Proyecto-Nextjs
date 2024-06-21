@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NavLinks from '@/app/ui/dashboard/nav-links';
+import NavLinks from '@/app/ui/admin/nav-links';
 import { PowerIcon, HomeIcon, UserIcon, CogIcon, ShoppingCartIcon, QuestionMarkCircleIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 import { signOut } from '@/auth';
