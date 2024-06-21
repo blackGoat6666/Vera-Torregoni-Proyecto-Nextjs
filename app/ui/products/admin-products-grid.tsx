@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { lusitana } from '../fonts';
 import { fetchProducts } from '@/app/lib/data';
+import { TrashIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
 
 
-  export default async function ProductsGrid() {
+  export default async function AdminProductsGrid() {
     const products = await fetchProducts();
     return (   
       <div>
@@ -23,11 +24,17 @@ import { fetchProducts } from '@/app/lib/data';
                   alt={product.image_alt}
                   width={500}
                   height={300}
-                />
-              </div>
-              <h3 className="mt-4 text-lg text-bold text-gray-700">{product.name}</h3>
-              <p className="mt-1 text-lg text-gray-900">Precio: {product.price}</p>
-              <p className="mt-1 text-lg text-gray-600">{product.description}</p>
+                    />
+                </div>
+                <h3 className="mt-4 text-lg text-bold text-gray-700">{product.name}</h3>
+                <p className="mt-1 text-lg text-gray-900">Precio: {product.price}</p>
+                <p className="mt-1 text-lg text-gray-600">{product.description}</p>
+                <button className="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-gray-50 hover:bg-sky-100 hover:text-green-600">
+                    <TrashIcon className="w-6" />
+                </button>
+                <button className="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-gray-50 hover:bg-sky-100 hover:text-green-600">
+                    <PencilSquareIcon className="w-6" />
+                </button>
             </a>
           ))}
         </div>
