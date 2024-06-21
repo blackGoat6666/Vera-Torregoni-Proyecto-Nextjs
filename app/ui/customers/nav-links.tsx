@@ -30,6 +30,7 @@ export default function NavLinks() {
         const LinkIcon = link.icon;
         return (
           <Link
+            key={link.name}
             href={link.href}
             className={clsx(
               'flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-gray-50 hover:bg-sky-100 hover:text-green-600',
