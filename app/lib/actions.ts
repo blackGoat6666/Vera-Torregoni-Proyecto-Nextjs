@@ -121,5 +121,7 @@ export type State = {
         }
       }
       throw error;
+    } finally {
+      redirect('/admin/dashboard');
     }
   }
