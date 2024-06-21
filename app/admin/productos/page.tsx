@@ -1,4 +1,4 @@
-import AdminProductsGrid from '@/app/ui/products/admin-products-grid';
+import AdminProductsGrid from '@/app/ui/admin/admin-products-grid';
 
 
 

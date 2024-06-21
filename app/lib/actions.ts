@@ -20,7 +20,15 @@ const FormSchema = z.object({
     }),
     date: z.string(),
   });
- 
+
+  const CreateProductSchema = z.object({
+    name: z.string().min(1, 'Name is required'),
+    price: z.number().min(0, 'Price must be a positive number'),
+    description: z.string().optional(),
+    imageSrc: z.string().url('Invalid URL for imageSrc'),
+    imageAlt: z.string().optional(),
+  });
+  
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
  
@@ -104,6 +112,54 @@ export type State = {
       return { message: 'Database Error: Failed to Delete Invoice.' };
     }
   }
+  
+  
+  export async function createProducts(prevState: State, formData: FormData) {
+    // Extract and validate form data
+    const name = formData.get('name') as string | null;
+    const price = formData.get('price') as string | null;
+    const description = formData.get('description') as string | null;
+    const imageSrc = formData.get('imageSrc') as string | null;
+    const imageAlt = formData.get('imageAlt') as string | null;
+
+    // Validate form using Zod
+    const validatedFields = CreateProductSchema.safeParse({
+      name: name ?? '',
+      price: price !== null ? parseFloat(price) : NaN,
+      description: description ?? '',
+      imageSrc: imageSrc ?? '',
+      imageAlt: imageAlt ?? '',
+    });
+
+    // If form validation fails, return errors early. Otherwise, continue.
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Missing or Invalid Fields. Failed to Create Product.',
+      };
+    }
+
+    // Prepare data for insertion into the database
+    const { name: validName, price: validPrice, description: validDescription, imageSrc: validImageSrc, imageAlt: validImageAlt } = validatedFields.data;
+
+    // Insert data into the database
+    try {
+      await sql`
+        INSERT INTO products (name, price, description, image_src, image_alt)
+        VALUES (${validName}, ${validPrice}, ${validDescription}, ${validImageSrc}, ${validImageAlt})
+      `;
+    } catch (error) {
+      // If a database error occurs, return a more specific error.
+      return {
+        message: 'Database Error: Failed to Create Product.',
+      };
+    }
+
+    // Revalidate the cache for the products page and redirect the user.
+    revalidatePath('/admin/productos');
+    redirect('/admin/productos');
+  }
+
 
   export async function authenticate(
     prevState: string | undefined,
