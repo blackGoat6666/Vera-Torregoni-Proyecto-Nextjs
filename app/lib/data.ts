@@ -7,6 +7,7 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  Product
 } from './definitions';
 import { formatCurrency } from './utils';
 import { unstable_noStore as noStore } from 'next/cache';
@@ -237,5 +238,28 @@ export async function getUser(email: string) {
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchProducts() {
+  // Add noStore() here to prevent the response from being cached.
+  // This is equivalent to in fetch(..., {cache: 'no-store'}).
+
+  noStore();
+  try {
+    // Artificially delay a response for demo purposes.
+    // Don't do this in production :)
+
+    console.log('Fetching Products data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const products = await sql<Product>`SELECT * FROM products`;
+
+    console.log('Data fetch completed after 3 seconds.');
+
+    return products.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch Products data.');
   }
 }

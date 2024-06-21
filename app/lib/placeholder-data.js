@@ -190,61 +190,62 @@ const products = [
   {
     id: 1,
     name: 'Yerba',
-    href: '#',
     price: '$48',
     imageSrc: '/yerba.png',
     imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+    description: 'Yerba mate de alta calidad, ideal para preparar una infusión energizante y tradicional.'
   },
   {
     id: 2,
     name: 'Poroto',
-    href: '#',
     price: '$35',
     imageSrc:  '/porotos.png',
     imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+    description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
   },
   {
     id: 3,
     name: 'Lenteja',
-    href: '#',
     price: '$89',
     imageSrc:  '/lentejas.png',
     imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+    description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
   },
   {
     id: 4,
     name: 'Alfajor',
-    href: '#',
     price: '$35',
     imageSrc:  '/alfajor.png',
     imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+    description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'
   },
   {
     id: 5,
     name: 'Poroto',
-    href: '#',
     price: '$35',
     imageSrc:  '/porotos.png',
     imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+    description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
   },
   {
     id: 6,
     name: 'Lenteja',
-    href: '#',
     price: '$89',
     imageSrc:  '/lentejas.png',
     imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+    description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
   },
   {
     id: 7,
     name: 'Alfajor',
-    href: '#',
     price: '$35',
     imageSrc:  '/alfajor.png',
     imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+    description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'
   },
   // More products...
 ]
+
 
 module.exports = {
   users,
