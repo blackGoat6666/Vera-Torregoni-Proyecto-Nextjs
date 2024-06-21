@@ -1,5 +1,3 @@
-
 export default function Page() {
-    return <p>Clientes</p>;
-
+    return <p>Ayudita lol</p>;
   }
