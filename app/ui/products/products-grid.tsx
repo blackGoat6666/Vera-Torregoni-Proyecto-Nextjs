@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { lusitana } from '../fonts';
 import { fetchProducts } from '@/app/lib/data';
+import MercadoPagoButton from '../MercadoPagoButton';
 
 
 
@@ -28,6 +29,7 @@ import { fetchProducts } from '@/app/lib/data';
               <h3 className="mt-4 text-lg text-bold text-gray-700">{product.name}</h3>
               <p className="mt-1 text-lg text-gray-900">Precio: {product.price}</p>
               <p className="mt-1 text-lg text-gray-600">{product.description}</p>
+              <MercadoPagoButton product={product} />
             </a>
           ))}
         </div>

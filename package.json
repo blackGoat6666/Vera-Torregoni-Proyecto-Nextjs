@@ -15,8 +15,10 @@
     "@types/node": "20.5.7",
     "@vercel/postgres": "^0.5.1",
     "autoprefixer": "10.4.15",
+    "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "clsx": "^2.0.0",
+    "mercadopago": "^1.5.16",
     "next": "^14.0.2",
     "next-auth": "^5.0.0-beta.19",
     "pnpm": "^9.4.0",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
+    "@types/mercadopago": "^1.5.11",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.14",
     "@vercel/style-guide": "^5.0.1",
