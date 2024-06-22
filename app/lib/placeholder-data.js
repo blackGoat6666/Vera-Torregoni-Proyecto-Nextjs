@@ -188,7 +188,6 @@ const revenue = [
 
 const products = [
   {
-    id: 1,
     name: 'Yerba',
     price: '$48',
     imageSrc: '/yerba.png',
@@ -196,7 +195,6 @@ const products = [
     description: 'Yerba mate de alta calidad, ideal para preparar una infusión energizante y tradicional.'
   },
   {
-    id: 2,
     name: 'Poroto',
     price: '$35',
     imageSrc:  '/porotos.png',
@@ -204,7 +202,6 @@ const products = [
     description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
   },
   {
-    id: 3,
     name: 'Lenteja',
     price: '$89',
     imageSrc:  '/lentejas.png',
@@ -212,7 +209,6 @@ const products = [
     description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
   },
   {
-    id: 4,
     name: 'Alfajor',
     price: '$35',
     imageSrc:  '/alfajor.png',
@@ -220,7 +216,6 @@ const products = [
     description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'
   },
   {
-    id: 5,
     name: 'Poroto',
     price: '$35',
     imageSrc:  '/porotos.png',
@@ -228,7 +223,6 @@ const products = [
     description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
   },
   {
-    id: 6,
     name: 'Lenteja',
     price: '$89',
     imageSrc:  '/lentejas.png',
@@ -236,7 +230,6 @@ const products = [
     description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
   },
   {
-    id: 7,
     name: 'Alfajor',
     price: '$35',
     imageSrc:  '/alfajor.png',

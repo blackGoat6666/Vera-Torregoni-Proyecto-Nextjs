@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import {
-  CheckIcon,
-  ClockIcon,
   CurrencyDollarIcon,
   DocumentTextIcon,
   HeartIcon,
   PhotoIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
-
+import { createProduct} from '@/app/lib/actions';
 export default function CreateProductForm() {
   return (
-    <form>
+    <form action={createProduct }>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Nombre producto */}
         <div className="mb-4">
@@ -23,7 +21,7 @@ export default function CreateProductForm() {
               <input
                 id="name"
                 name="name"
-                type="text"
+                type="string"
                 placeholder="Ingresar nombre del producto"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
@@ -72,7 +70,7 @@ export default function CreateProductForm() {
         </div>
 
         {/* Subir imagen */}
-        <div className="mb-4">
+        {/*<div className="mb-4">
           <label htmlFor="image" className="mb-2 block text-sm font-medium">
             Subir imagen
           </label>
@@ -82,6 +80,25 @@ export default function CreateProductForm() {
                 id="image"
                 name="image"
                 type="file"
+                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              />
+              <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            </div>
+          </div>
+        </div>*/}
+
+        {/*  imagen  temp*/}
+        <div className="mb-4">
+          <label htmlFor="image" className="mb-2 block text-sm font-medium">
+            Imagen
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+              <input
+                id="image"
+                name="image"
+                type="text"
+                placeholder="Ingresar descripción de la imagen"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />

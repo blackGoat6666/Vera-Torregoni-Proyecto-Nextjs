@@ -32,7 +32,7 @@ export type Revenue = {
 };
 
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   price: number;
   description: string;

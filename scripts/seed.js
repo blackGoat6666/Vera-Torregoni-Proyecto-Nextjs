@@ -180,13 +180,13 @@ async function seedRevenue(client) {
 async function seedProducts(client) {
   try {
 
-    await client.sql`TRUNCATE TABLE products RESTART IDENTITY;`;
+    await client.sql`DROP TABLE IF EXISTS products;`;
+    console.log(`Dropped "products" table if it existed`);
 
-    console.log(`Truncated "products" table`);
     // Crear la tabla "products" si no existe
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS products (
-        id INT PRIMARY KEY,
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         description TEXT,
         price VARCHAR(10) NOT NULL,
@@ -201,8 +201,8 @@ async function seedProducts(client) {
     const insertedProducts = await Promise.all(
       products.map(
         (product) => client.sql`
-        INSERT INTO products (id, name, description, price, image_src, image_alt)
-        VALUES (${product.id}, ${product.name}, ${product.description}, ${product.price}, ${product.imageSrc}, ${product.imageAlt})
+        INSERT INTO products (name, description, price, image_src, image_alt)
+        VALUES ( ${product.name}, ${product.description}, ${product.price}, ${product.imageSrc}, ${product.imageAlt})
         ON CONFLICT (id) DO NOTHING;
       `,
       ),
