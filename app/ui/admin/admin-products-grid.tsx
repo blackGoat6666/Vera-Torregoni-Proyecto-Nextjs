@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { lusitana } from '../fonts';
 import { fetchProducts } from '@/app/lib/data';
 import { TrashIcon, PencilSquareIcon, PlusIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 export default async function AdminProductsGrid() {
   const products = await fetchProducts();
@@ -13,13 +14,13 @@ export default async function AdminProductsGrid() {
         </h2>
       </div>
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-2 pt-8">
+        <Link href="/admin/productos/create" className="group p-5 bg-gray-100 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-200 transition-all duration-300">
         {/* Tarjeta de Nuevo Producto */}
-        <div className="group p-5 bg-gray-100 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-200 transition-all duration-300">
           <div className="flex flex-col items-center justify-center">
             <PlusIcon className='h-13 w-13 text-gray-600 mb-2'/>
             <span className="text-2xl text-gray-600">Nuevo Producto</span>
           </div>
-        </div>
+        </Link>
         {products.map((product) => (
           <a key={product.id} href="" className="group p-5 bg-gray-100 rounded-lg">
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7">
