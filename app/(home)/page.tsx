@@ -1,3 +1,9 @@
+import { Recetas } from "../ui/home/recetas";
+
 export default function Page() {
-    return <p>home Page</p>;
+    return (
+    <div className="flex flex-row">
+      <Recetas></Recetas>
+    </div>
+    );
   }
