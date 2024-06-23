@@ -216,26 +216,146 @@ const products = [
     description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'
   },
   {
-    name: 'Poroto',
-    price: '35',
-    imageSrc:  '/porotos.png',
-    imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-    description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
+    name: 'Quinoa',
+    price: '120',
+    imageSrc: '/quinoa.jpg',
+    imageAlt: 'Granos de quinoa en un bol de madera.',
+    description: 'Quinoa orgánica, alta en proteínas y perfecta para ensaladas y platos principales.'
   },
   {
-    name: 'Lenteja',
-    price: '89',
-    imageSrc:  '/lentejas.png',
-    imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-    description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
+    name: 'Chía',
+    price: '60',
+    imageSrc: '/chia.jpg',
+    imageAlt: 'Semillas de chía en una cuchara de madera.',
+    description: 'Semillas de chía ricas en omega-3 y fibra, ideales para batidos y yogures.'
   },
   {
-    name: 'Alfajor',
-    price: '35',
-    imageSrc:  '/alfajor.png',
-    imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-    description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'
+    name: 'Almendra',
+    price: '200',
+    imageSrc: '/almendra.jpeg',
+    imageAlt: 'Un puñado de almendras en una mesa de madera.',
+    description: 'Almendras crudas, ricas en vitamina E y grasas saludables, ideales para snacks y repostería.'
   },
+  {
+    name: 'Avena',
+    price: '75',
+    imageSrc: '/avena.jpg',
+    imageAlt: 'Copos de avena en un bol blanco.',
+    description: 'Avena integral, ideal para desayunos energéticos y saludables.'
+  },
+  {
+    name: 'Arroz Integral',
+    price: '90',
+    imageSrc: '/arroz_integral.jpg',
+    imageAlt: 'Granos de arroz integral en una bolsa de papel.',
+    description: 'Arroz integral, alto en fibra y nutrientes, perfecto para una alimentación balanceada.'
+  },
+  {
+    name: 'Sésamo',
+    price: '50',
+    imageSrc: '/sesamo.jpg',
+    imageAlt: 'Semillas de sésamo en un bol de cerámica.',
+    description: 'Semillas de sésamo, ricas en minerales y perfectas para ensaladas y panes.'
+  },
+  {
+    name: 'Harina de Coco',
+    price: '120',
+    imageSrc: '/harina_coco.jpg',
+    imageAlt: 'Harina de coco en un tarro de vidrio.',
+    description: 'Harina de coco, sin gluten y baja en carbohidratos, ideal para recetas saludables.'
+  },
+  {
+    name: 'Cacao',
+    price: '140',
+    imageSrc: '/cacao.jpg',
+    imageAlt: 'Polvo de cacao en un tarro de vidrio.',
+    description: 'Cacao puro y natural, perfecto para bebidas y postres con un toque saludable.'
+  },
+  {
+    name: 'Galletas de Avena',
+    price: '50',
+    imageSrc: '/galletas_avena.jpeg',
+    imageAlt: 'Galletas de avena en un plato de cerámica.',
+    description: 'Galletas crujientes de avena, ideales para una merienda saludable y nutritiva.'
+  },
+  {
+    name: 'Muffins de Chocolate',
+    price: '80',
+    imageSrc: '/muffins_chocolate.jpg',
+    imageAlt: 'Muffins de chocolate con chispas en una bandeja.',
+    description: 'Deliciosos muffins de chocolate, perfectos para acompañar con un café o té.'
+  },
+  {
+    name: 'Barritas de Cereal',
+    price: '60',
+    imageSrc: '/barritas_cereal.jpg',
+    imageAlt: 'Barritas de cereal envueltas individualmente.',
+    description: 'Barritas de cereal con frutas, ideales para una merienda rápida y energética.'
+  },
+  {
+    name: 'Galletas Integrales',
+    price: '55',
+    imageSrc: '/galletas_integrales.jpg',
+    imageAlt: 'Galletas integrales en una bandeja de madera.',
+    description: 'Galletas integrales ricas en fibra, perfectas para un snack saludable.'
+  },
+  {
+    name: 'Brownies',
+    price: '100',
+    imageSrc: '/brownies.jpg',
+    imageAlt: 'Brownies de chocolate en un plato blanco.',
+    description: 'Deliciosos brownies de chocolate, ideales para un postre o merienda dulce.'
+  },
+  {
+    name: 'Queso Vegano',
+    price: '120',
+    imageSrc: '/queso_vegano.jpg',
+    imageAlt: 'Bloque de queso vegano.',
+    description: 'Queso vegano en paquete, perfecto para sandwiches y recetas saludables.'
+  },
+  {
+    name: 'Tofu',
+    price: '80',
+    imageSrc: '/tofu.jpeg',
+    imageAlt: 'Bloque de tofu con vegetales.',
+    description: 'Tofu en paquete, ideal para platos vegetarianos y veganos.'
+  },
+  {
+    name: 'Alfajor Vegano',
+    price: '50',
+    imageSrc: '/alfajor_vegano.jpg',
+    imageAlt: 'Alfajor vegano.',
+    description: 'Pack de alfajor vegano, delicioso y libre de productos animales.'
+  },
+  {
+    name: 'Helado Vegano',
+    price: '150',
+    imageSrc: '/helado_vegano.jpg',
+    imageAlt: 'Tarrina de helado vegano.',
+    description: 'Tarrina de helado vegano, ideal para un postre refrescante y saludable.'
+  },
+  {
+    name: 'Té',
+    price: '40',
+    imageSrc: '/te.jpg',
+    imageAlt: 'Taza de té caliente.',
+    description: 'Paquete de té, perfecto para una bebida caliente y relajante.'
+  },
+  {
+    name: 'Hamburguesas de Porotos',
+    price: '100',
+    imageSrc: '/hamburguesas_porotos.jpeg',
+    imageAlt: 'Hamburguesas de porotos.',
+    description: 'Pack de hamburguesas de porotos, ideal para una comida vegana y nutritiva.'
+  },
+  {
+    name: 'Milanesas de Seitan',
+    price: '110',
+    imageSrc: '/milanesas_seitan.jpg',
+    imageAlt: 'Milanesas de seitan.',
+    description: 'Pack de milanesas de seitan, perfecto para una comida vegana y rica en proteínas.'
+  }
+
   // More products...
 ]
 
