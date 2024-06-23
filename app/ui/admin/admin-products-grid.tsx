@@ -9,11 +9,11 @@ export default async function AdminProductsGrid() {
   const products = await fetchProducts();
   return (   
     <div>
-      <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-6 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
+      {/* <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-6 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
         <h2 className={`${lusitana.className} text-5xl font-bold tracking-tight text-center text-white`}>
           Productos
         </h2>
-      </div>
+      </div> */}
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-2 pt-8">
         <Link href="/admin/productos/create" className="group p-5 bg-gray-100 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-200 transition-all duration-300">
         {/* Tarjeta de Nuevo Producto */}
