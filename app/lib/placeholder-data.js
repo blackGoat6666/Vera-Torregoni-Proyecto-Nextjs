@@ -189,49 +189,49 @@ const revenue = [
 const products = [
   {
     name: 'Yerba',
-    price: '$48',
+    price: '48',
     imageSrc: '/yerba.png',
     imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     description: 'Yerba mate de alta calidad, ideal para preparar una infusión energizante y tradicional.'
   },
   {
     name: 'Poroto',
-    price: '$35',
+    price: '35',
     imageSrc:  '/porotos.png',
     imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
     description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
   },
   {
     name: 'Lenteja',
-    price: '$89',
+    price: '89',
     imageSrc:  '/lentejas.png',
     imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
     description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
   },
   {
     name: 'Alfajor',
-    price: '$35',
+    price: '35',
     imageSrc:  '/alfajor.png',
     imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
     description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'
   },
   {
     name: 'Poroto',
-    price: '$35',
+    price: '35',
     imageSrc:  '/porotos.png',
     imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
     description: 'Porotos frescos y nutritivos, perfectos para guisos, ensaladas y platos vegetarianos.'
   },
   {
     name: 'Lenteja',
-    price: '$89',
+    price: '89',
     imageSrc:  '/lentejas.png',
     imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
     description: 'Lentejas de excelente calidad, ricas en proteínas y fibra, ideales para una dieta equilibrada.'
   },
   {
     name: 'Alfajor',
-    price: '$35',
+    price: '35',
     imageSrc:  '/alfajor.png',
     imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
     description: 'Delicioso alfajor relleno de dulce de leche y cubierto con chocolate, una clásica golosina argentina.'

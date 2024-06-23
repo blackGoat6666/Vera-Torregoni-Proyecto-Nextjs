@@ -263,3 +263,25 @@ export async function fetchProducts() {
     throw new Error('Failed to fetch Products data.');
   }
 }
+
+export async function fetchProductById(id: string) {
+  noStore();
+  try {
+    console.log(id);
+    const data = await sql<Product>`
+      SELECT
+        *
+      FROM products
+      WHERE products.id = ${id};
+    `;
+
+    const product = data.rows.map((product) => ({
+      ...product,
+    }));
+
+    return product[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch product.');
+  }
+}

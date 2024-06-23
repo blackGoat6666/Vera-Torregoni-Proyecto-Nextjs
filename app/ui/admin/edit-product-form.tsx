@@ -8,10 +8,16 @@ import {
   PhotoIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
+import { Product } from '@/app/lib/definitions';
+import { updateProduct } from '@/app/lib/actions';
 
-export default function EditProductForm() {
+export default function EditProductForm( {product}:{
+  product: Product;
+} ) 
+  {
+    const updateProductWithId = updateProduct.bind(null, product.id);
   return (
-    <form>
+    <form action={updateProductWithId}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Nombre producto */}
         <div className="mb-4">
@@ -25,6 +31,7 @@ export default function EditProductForm() {
                 name="name"
                 type="text"
                 placeholder="Ingresar nombre del producto"
+                defaultValue={product.name}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <HeartIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -43,6 +50,7 @@ export default function EditProductForm() {
                 id="description"
                 name="description"
                 type="text"
+                defaultValue={product.description}
                 placeholder="Ingresar descripción del producto"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
@@ -64,15 +72,15 @@ export default function EditProductForm() {
                 type="number"
                 step="0.01"
                 placeholder="Ingresar precio del producto"
+                defaultValue={product.price}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
-
         {/* Subir imagen */}
-        <div className="mb-4">
+        {/*<div className="mb-4">
           <label htmlFor="image" className="mb-2 block text-sm font-medium">
             Subir imagen
           </label>
@@ -82,6 +90,26 @@ export default function EditProductForm() {
                 id="image"
                 name="image"
                 type="file"
+                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              />
+              <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            </div>
+          </div>
+        </div>*/}
+
+        {/*  imagen  temp*/}
+        <div className="mb-4">
+          <label htmlFor="image" className="mb-2 block text-sm font-medium">
+            Imagen
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+              <input
+                id="image"
+                name="image"
+                type="text"
+                placeholder="Ingresar descripción de la imagen"
+                defaultValue={product.image_src}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -101,6 +129,7 @@ export default function EditProductForm() {
                 name="imageAlt"
                 type="text"
                 placeholder="Ingresar descripción de la imagen"
+                defaultValue={product.image_alt}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <DocumentTextIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -115,7 +144,7 @@ export default function EditProductForm() {
         >
           Cancel
         </Link>
-        <Button type="submit">Crear Producto</Button>
+        <Button type="submit">Editar Producto</Button>
       </div>
     </form>
   );

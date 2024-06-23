@@ -136,6 +136,39 @@ export type State = {
     redirect('/admin/productos');
   }
 
+  export async function updateProduct(id: string, formData: FormData) {
+    const { name, description, price, image, imageAlt } = CreateProduct.parse({
+      name: formData.get('name'),
+      description: formData.get('description'),
+      price: formData.get('price'),
+      image: formData.get('image'),
+      imageAlt: formData.get('imageAlt'),
+    });
+   
+   
+    try {
+      await sql`
+          UPDATE products
+          SET name = ${name}, description = ${description}, price = ${price}, image_src = ${image}, image_alt =  ${imageAlt}
+          WHERE id = ${id}
+        `;
+    } catch (error) {
+      return { message: 'Database Error: Failed to Update Invoice.' };
+    }
+   
+    revalidatePath('/admin/productos');
+    redirect('/admin/productos');
+  }
+
+  export async function deleteProduct(id: string) {
+    try {
+      await sql`DELETE FROM products WHERE id = ${id}`;
+      revalidatePath('/admin/productos');
+      return { message: 'Deleted Invoice.' };
+    } catch (error) {
+      return { message: 'Database Error: Failed to Delete Invoice.' };
+    }
+  }
 
   export async function authenticate(
     prevState: string | undefined,
