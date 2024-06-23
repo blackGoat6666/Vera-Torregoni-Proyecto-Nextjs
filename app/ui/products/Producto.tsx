@@ -16,7 +16,7 @@ interface NotificationType {
 
 const Producto = () => {
   const initialProduct: Product = {
-    id: 1,
+    id: "6bdd97b6-b6a3-458c-82a8-990f0bf90c79",
     name: "Black Friday Product",
     price: 100,
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
