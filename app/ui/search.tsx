@@ -11,7 +11,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 
   const handleSearch = useDebouncedCallback((term) => {
     console.log(`Searching... ${term}`);
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams ?? ''); // Default to empty string if searchParams is null
     params.set('page', '1');
     if (term) {
       params.set('query', term);
@@ -20,6 +20,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
     }
     replace(`${pathname}?${params.toString()}`);
   }, 300);
+
   return (
     <div className="relative flex flex-1 flex-shrink-0">
       <label htmlFor="search" className="sr-only">
@@ -31,7 +32,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
-        defaultValue={searchParams.get('query')?.toString()}
+        defaultValue={searchParams?.get('query') ?? ''} // Default to empty string if searchParams is null
       />
       <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
     </div>
