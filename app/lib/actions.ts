@@ -127,11 +127,16 @@ export type State = {
       imageAlt: formData.get('imageAlt'),
     });
    
-    await sql`
+    try {
+      await sql`
       INSERT INTO products (name, description, price, image_src, image_alt)
       VALUES (${name}, ${description}, ${price}, ${image}, ${imageAlt})
     `;
-   
+    } catch (error) {
+      return {
+        message: 'Database Error: Failed to Create Invoice.',
+      };
+    }
     revalidatePath('/admin/productos');
     redirect('/admin/productos');
   }

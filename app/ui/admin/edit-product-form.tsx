@@ -11,6 +11,7 @@ import { Button } from '@/app/ui/button';
 import { Product } from '@/app/lib/definitions';
 import { updateProduct } from '@/app/lib/actions';
 
+
 export default function EditProductForm( {product}:{
   product: Product;
 } ) 
