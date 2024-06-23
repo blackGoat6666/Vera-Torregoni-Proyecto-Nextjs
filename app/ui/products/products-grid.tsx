@@ -27,7 +27,7 @@ import MercadoPagoButton from '../MercadoPagoButton';
                 />
               </div>
               <h3 className="mt-4 text-lg text-bold text-gray-700">{product.name}</h3>
-              <p className="mt-1 text-lg text-gray-900">Precio: {product.price}</p>
+              <p className="mt-1 text-lg text-gray-900">Precio: ${product.price}</p>
               <p className="mt-1 text-lg text-gray-600">{product.description}</p>
               <MercadoPagoButton product={product} />
             </a>

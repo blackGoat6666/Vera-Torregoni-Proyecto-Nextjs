@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -12,12 +11,14 @@ const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
     const [quantity, setQuantity] = useState<number>(1); // Estado para la cantidad de productos
 
     // Función para manejar el incremento de la cantidad
-    const incrementQuantity = () => {
+    const incrementQuantity = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault(); // Previene el comportamiento predeterminado del botón
         setQuantity(prevQuantity => prevQuantity + 1);
     };
 
     // Función para manejar la resta de la cantidad
-    const decrementQuantity = () => {
+    const decrementQuantity = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault(); // Previene el comportamiento predeterminado del botón
         if (quantity > 1) { // Asegura que la cantidad no sea menor que 1
             setQuantity(prevQuantity => prevQuantity - 1);
         }
@@ -33,7 +34,8 @@ const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
     };
 
     // Función para generar el enlace de pago
-    const generateLink = async () => {
+    const generateLink = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault(); // Previene el comportamiento predeterminado del botón
         try {
             const { data } = await axios.post("/api/checkout", {
                 product: {
@@ -53,26 +55,30 @@ const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
     return (
         <div className="flex flex-col items-center justify-center" style={{ marginTop: "10px" }}>
             <div className="flex items-center mb-4">
-            <button
-             onClick={decrementQuantity}
-            className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors duration-300 mr-2"
-            >
-                 -
-            </button>
-            <span className="text-xl font-bold">{quantity}</span>
-            <button
-            onClick={incrementQuantity}
-            className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors duration-300 ml-2"
-            >
-                +
-            </button>
-
+                <button
+                    onClick={decrementQuantity}
+                    className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors duration-300 mr-2"
+                >
+                    -
+                </button>
+                <span className="text-xl font-bold">{quantity}</span>
+                <button
+                    onClick={incrementQuantity}
+                    className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors duration-300 ml-2"
+                >
+                    +
+                </button>
             </div>
+            {quantity > 1 && (
+                <div className="price text-xl font-bold mb-4">
+                    Total: ${totalPrice()}
+                </div>
+            )}
             <button
                 onClick={generateLink}
                 className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300"
             >
-                {`Comprar ahora ($${totalPrice()})`}
+                Comprar ahora
             </button>
         </div>
     );
