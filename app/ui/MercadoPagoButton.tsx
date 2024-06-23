@@ -1,8 +1,6 @@
 
 "use client";
-// components/MercadoPagoButton.tsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Product } from '@/app/lib/definitions';
 
@@ -11,56 +9,71 @@ interface MercadoPagoButtonProps {
 }
 
 const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
-    const [url, setUrl] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [quantity, setQuantity] = useState<number>(1); // Estado para la cantidad de productos
 
-    useEffect(() => {
-        const generateLink = async () => {
-            setLoading(true);
+    // Función para manejar el incremento de la cantidad
+    const incrementQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
 
-            try {
-                // Validación y transformación del precio del producto
-                let price = parseFloat(product.price.replace('$', ''));
+    // Función para manejar la resta de la cantidad
+    const decrementQuantity = () => {
+        if (quantity > 1) { // Asegura que la cantidad no sea menor que 1
+            setQuantity(prevQuantity => prevQuantity - 1);
+        }
+    };
 
-                if (isNaN(price)) {
-                    throw new Error('El precio del producto no es válido.');
-                }
+    // Calcula el precio total basado en la cantidad seleccionada
+    const totalPrice = () => {
+        let price = parseFloat(product.price.replace('$', ''));
+        if (isNaN(price)) {
+            throw new Error('El precio del producto no es válido.');
+        }
+        return price * quantity;
+    };
 
-                const { data } = await axios.post("/api/checkout", {
-                    product: {
-                        ...product,
-                        price: price
-                    },
-                });
+    // Función para generar el enlace de pago
+    const generateLink = async () => {
+        try {
+            const { data } = await axios.post("/api/checkout", {
+                product: {
+                    ...product,
+                    price: totalPrice(),
+                    quantity: quantity
+                },
+            });
 
-                setUrl(data.url);
-            } catch (error) {
-                console.error(error);
-                // Manejo del error aquí (por ejemplo, mostrar un mensaje al usuario)
-            }
-
-            setLoading(false);
-        };
-
-        generateLink();
-    }, [product]);
+            window.open(data.url, '_blank'); // Abre el enlace en una nueva pestaña
+        } catch (error) {
+            console.error(error);
+            // Manejo del error aquí (por ejemplo, mostrar un mensaje al usuario)
+        }
+    };
 
     return (
-        <div className="flex justify-center" style={{ marginTop: "10px" }}>
-            {loading ? (
-                <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300">
-                    Cargando...
-                </button>
-            ) : (
-                <a
-                    href={url || '#'}  // Evita el error de intentar abrir una URL nula
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 margin-top: 5px"
-                >
-                    Comprar ahora
-                </a>
-            )}
+        <div className="flex flex-col items-center justify-center" style={{ marginTop: "10px" }}>
+            <div className="flex items-center mb-4">
+            <button
+             onClick={decrementQuantity}
+            className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors duration-300 mr-2"
+            >
+                 -
+            </button>
+            <span className="text-xl font-bold">{quantity}</span>
+            <button
+            onClick={incrementQuantity}
+            className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors duration-300 ml-2"
+            >
+                +
+            </button>
+
+            </div>
+            <button
+                onClick={generateLink}
+                className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300"
+            >
+                {`Comprar ahora ($${totalPrice()})`}
+            </button>
         </div>
     );
 };
