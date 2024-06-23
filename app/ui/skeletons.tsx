@@ -1,3 +1,5 @@
+import { lusitana } from "./fonts";
+
 // Loading animation
 const shimmer =
   'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
@@ -215,4 +217,40 @@ export function InvoicesTableSkeleton() {
       </div>
     </div>
   );
+}
+
+
+export function ProductCardSkeleton() {
+  return (
+    <div
+      className={`${shimmer} relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+    >
+      <div className="group p-5 bg-gray-100 rounded-lg">
+        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7"/>
+        <div className="ml-2 h-6 w-16 rounded-md bg-gray-200 text-sm font-medium" />
+        <div className="mt-4 text-lg text-bold text-gray-700"/>
+        <div className="mt-1 text-lg text-gray-900"/>
+      </div>
+    </div>
+  );
+}
+
+export function ProductGridSkeleton() {
+  return (
+    <div className="w-full">
+      <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-6 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
+        <h2 className={`${lusitana.className} text-5xl font-bold tracking-tight text-center text-white`}>
+          Productos
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-2 pt-8">
+      <ProductCardSkeleton/>
+      <ProductCardSkeleton/>
+      <ProductCardSkeleton/>
+      <ProductCardSkeleton/>
+      <ProductCardSkeleton/>
+    </div>
+    </div>
+    
+  )
 }
