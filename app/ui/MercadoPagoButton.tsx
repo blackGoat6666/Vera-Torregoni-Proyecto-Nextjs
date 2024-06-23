@@ -26,7 +26,7 @@ const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
 
     // Calcula el precio total basado en la cantidad seleccionada
     const totalPrice = () => {
-        let price = parseFloat(product.price.replace('$', ''));
+        let price = product.price;
         if (isNaN(price)) {
             throw new Error('El precio del producto no es válido.');
         }
