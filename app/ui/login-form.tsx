@@ -17,7 +17,7 @@ export default function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    
       <form action={dispatch} className="space-y-3 p-6 bg-white shadow-md rounded-lg max-w-md w-full">
         <div className="flex items-center justify-center mb-4">
           <Image src={veganLogo} alt="Vegan Logo" width={40} height={40} className="mr-2" />
@@ -78,7 +78,6 @@ export default function LoginForm() {
           )}
         </div>
       </form>
-    </div>
   );
 }
 

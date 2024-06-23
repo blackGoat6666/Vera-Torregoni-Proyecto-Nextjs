@@ -15,7 +15,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <Header />
         <div className="flex flex-row">
-          <div className="flex basis-20/24">
+          <div className="w-full">
             {children}
           </div>
           <div className="flex flex-grow-0 basis-2/24">
