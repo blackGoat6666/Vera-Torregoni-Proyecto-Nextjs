@@ -76,7 +76,7 @@ const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
             )}
             <button
                 onClick={generateLink}
-                className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300"
+                className="bg-pastelGreen text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300"
             >
                 Comprar ahora
             </button>
