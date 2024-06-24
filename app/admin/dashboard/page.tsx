@@ -1,9 +1,7 @@
 import CardWrapper from '@/app/ui/admin/cards';
-import RevenueChart from '@/app/ui/admin/revenue-chart';
-import LatestInvoices from '@/app/ui/admin/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
-import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton, } from '@/app/ui/skeletons';
+import { CardsSkeleton, } from '@/app/ui/skeletons';
  
 export default async function Page() {
   return (
@@ -16,14 +14,10 @@ export default async function Page() {
           <CardWrapper />
         </Suspense>
       </div>
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <Suspense fallback={<RevenueChartSkeleton />}>
-          <RevenueChart />
-        </Suspense>
-        <Suspense fallback={<LatestInvoicesSkeleton />}>
-          <LatestInvoices />
-        </Suspense>
-      </div>
+      <p className='text-3xl font-bold w-full align-center text-gray-500 text-center p-15'>
+        Podes gestionar Todos tus productos en un solo espacio!
+        Suma, modifica y elimina tus productos en la tienda virtual
+      </p>
     </main>
   );
 }

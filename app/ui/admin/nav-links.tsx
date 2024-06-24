@@ -14,7 +14,6 @@ import clsx from 'clsx';
 const links = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: ChartBarIcon },
   { name: 'Facturas', href: '/admin/facturas', icon: DocumentDuplicateIcon },
-  { name: 'Clientes', href: '/admin/clientes', icon: UserGroupIcon },
   { name: 'Productos', href: '/admin/productos', icon:ShoppingCartIcon },
 
   
