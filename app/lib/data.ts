@@ -130,6 +130,34 @@ export async function fetchFilteredInvoices(
   }
 }
 
+const PRODUCTS_PER_PAGE = 12;
+export async function fetchFilteredProducts(
+  query: string,
+  currentPage: number,
+) {
+  noStore();
+  const offset = (currentPage - 1) * PRODUCTS_PER_PAGE;
+
+  try {
+    const products = await sql<Product>`
+      SELECT
+        *
+      FROM products
+      WHERE
+        products.name ILIKE ${`%${query}%`} OR
+        products.description ILIKE ${`%${query}%`} OR
+        products.price::text ILIKE ${`%${query}%`} OR
+        products.image_alt ILIKE ${`%${query}%`}
+      LIMIT ${PRODUCTS_PER_PAGE} OFFSET ${offset}
+    `;
+
+    return products.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch products.');
+  }
+}
+
 export async function fetchInvoicesPages(query: string) {
   noStore();
   try {
@@ -149,6 +177,27 @@ export async function fetchInvoicesPages(query: string) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of invoices.');
+  }
+}
+
+export async function fetchProductsPages(query: string) {
+  noStore();
+  try {
+    const count = await sql`SELECT COUNT(*)
+    FROM products
+    WHERE
+      products.name ILIKE ${`%${query}%`} OR
+      products.description ILIKE ${`%${query}%`} OR
+      products.price::text ILIKE ${`%${query}%`} OR
+      products.image_src ILIKE ${`%${query}%`} OR
+      products.image_alt ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / PRODUCTS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of products.');
   }
 }
 

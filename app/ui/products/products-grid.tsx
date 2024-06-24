@@ -1,12 +1,18 @@
 import Image from 'next/image';
 import { lusitana } from '../fonts';
-import { fetchProducts } from '@/app/lib/data';
+import { fetchFilteredProducts } from '@/app/lib/data';
 import MercadoPagoButton from '../MercadoPagoButton';
 
 
 
-  export default async function ProductsGrid() {
-    const products = await fetchProducts();
+  export default async function ProductsGrid({
+    query,
+    currentPage,
+  }: {
+    query: string;
+    currentPage: number;
+  })  {
+    const products = await fetchFilteredProducts(query, currentPage);
     return (   
       <div style={{ marginRight: '95px',  marginLeft: '20px' }}>
         {/* <div className="flex rounded-lg p-3 md:overflow-y-auto md:p-6 w-full bg-gradient-to-r from-lime-400 to-pastelGreen justify-center hover:from-lime-300 hover:to-pastelGreen transition-all duration-300">
