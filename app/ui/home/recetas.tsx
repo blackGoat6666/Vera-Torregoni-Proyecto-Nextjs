@@ -28,11 +28,11 @@ export async function Recetas() {
         return (
             <div className="grid grid-cols-3 gap-5 w-11/12 pl-5">
                 {recetas.map((receta) => (
-                    <div className="group p-8 bg-gray-100 rounded-lg" key={receta.idMeal}>
-                        <img className="rounded-lg" src={receta.strMealThumb} alt={receta.strMeal} />
+                    <div className="group p-8 bg-gray-100 rounded-lg flex flex-col items-center" key={receta.idMeal} style={{ maxHeight: '50rem', overflowY: 'auto', marginBottom: '1rem' }}>
+                        <img className="rounded-lg" src={receta.strMealThumb} alt={receta.strMeal} style={{ maxWidth: '350px' }}/>
                         <h2 className="text-center pt-5 text-gray-800">{receta.strMeal}</h2>
                         <p className="pt-4 font-bold">Instrucciones:</p>
-                        <p className="">{receta.strInstructions}</p>
+                        <p className="text-justify" style={{ textAlign: 'justify' }}>{receta.strInstructions}</p>
                     </div>
                 ))}
             </div>
