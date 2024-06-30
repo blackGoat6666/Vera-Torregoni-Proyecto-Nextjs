@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { fetchFilteredProducts } from '@/app/lib/data';
 import ProductCard from './productCard';
+import React from 'react';
 
 
 

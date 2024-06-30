@@ -1,8 +1,10 @@
 import CustomSideNav from "../ui/customers/customersidenav";
+import StoreProvider from "../redux/StoreProvider";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex flex-row">
+        <StoreProvider>
+            <div className="flex flex-row">
           <div className="w-full">
             {children}
           </div>
@@ -10,5 +12,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <CustomSideNav />
           </div>
         </div>
+        </StoreProvider>
     );
 }
