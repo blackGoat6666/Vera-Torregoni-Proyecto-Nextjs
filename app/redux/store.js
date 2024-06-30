@@ -5,5 +5,5 @@ export const store = configureStore({
     reducer: {
         cart: cartSliceReducer
     },
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: process.env.NODE_ENV !== true,
 })
