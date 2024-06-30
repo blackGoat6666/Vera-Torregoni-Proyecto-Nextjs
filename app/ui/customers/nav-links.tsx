@@ -16,7 +16,7 @@ const links = [
     { name: 'LogIn', href: '/login', icon: UserIcon },
     { name: 'Home', href: '/', icon:HomeIcon },
     { name: 'Productos', href: '/productos', icon:BuildingStorefrontIcon },
-    // { name: 'Carrito', href: '/cart', icon: ShoppingCartIcon },
+    { name: 'Carrito', href: '/cart', icon: ShoppingCartIcon },
     { name: 'Info', href: '/help', icon: QuestionMarkCircleIcon },
 
   
