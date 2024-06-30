@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie'
 
 const initialState = {
@@ -45,5 +45,15 @@ const cartSlice = createSlice({
 })
 
 export const {addToCart, removeFromCart, hideLoading} = cartSlice.actions
+
+export const selectCart = state => state.cart;
+export const selectCartItems = createSelector(
+    selectCart,
+    cart => cart.cartItems
+);
+export const selectCartTotal = createSelector(
+    selectCart,
+    cart => cart.totalPrice
+);
 
 export default cartSlice.reducer

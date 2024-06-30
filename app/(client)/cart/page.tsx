@@ -1,6 +1,5 @@
-
+import { Cart } from "@/app/ui/products/Cart";
 
 export default function Page() {
-    return <div>
-  </div>
+    return <div><Cart></Cart></div>
   }
