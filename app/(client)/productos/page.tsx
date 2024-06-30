@@ -1,9 +1,7 @@
-import CustomSideNav from '@/app/ui/customers/customersidenav';
-import Header from '@/app/ui/header';
-import ProductsGrid from '../ui/products/products-grid';
-import Search from '../ui/search';
-import { fetchProductsPages } from '../lib/data';
-import Pagination from '../ui/pagination';
+import ProductsGrid from '../../ui/products/products-grid';
+import Search from '../../ui/search';
+import { fetchProductsPages } from '../../lib/data';
+import Pagination from '../../ui/pagination';
 
 
 
