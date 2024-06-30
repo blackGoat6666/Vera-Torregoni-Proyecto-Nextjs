@@ -10,10 +10,9 @@ export default function ProductCard({ product }: {
     product: Product;
   }) {
     const dispatch = useDispatch()
-    const qty = 1
     const addToCartHandler = () => {
-      dispatch(addToCart({...product, qty}))
-    }
+      dispatch(addToCart(product));
+  }
     return (
       <a key={product.id} href="" className="group p-5 bg-gray-100 rounded-lg">
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7">

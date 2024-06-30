@@ -19,10 +19,10 @@ const cartSlice = createSlice({
             const existItem = state.cartItems.find((x) => x.id === item.id)
             if(existItem) {
                 state.cartItems = state.cartItems.map((x) =>
-                    x.id === existItem.id ? item : x
+                    x.id === existItem.id ? { ...x, qty: x.qty + 1 } : x
                 )
             } else {
-                state.cartItems = [...state.cartItems, item]
+                state.cartItems = [...state.cartItems, { ...item, qty: 1 }]
             }
             state.itemsPrice = addDecimals(
                 state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
