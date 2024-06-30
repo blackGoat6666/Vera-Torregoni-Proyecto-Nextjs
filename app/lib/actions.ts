@@ -94,6 +94,7 @@ const CreateProduct = FormSchemaProduct.omit({ id: true,});
       }
       throw error;
     } finally {
+      revalidatePath('/admin/dashboard');
       redirect('/admin/dashboard');
     }
   }
