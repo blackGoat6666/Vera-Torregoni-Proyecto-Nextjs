@@ -2,6 +2,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCartItems, selectCartTotal } from '@/app/redux/slices/cartSlice';
+import MercadoPagoButton from '../MercadoPagoButton';
+
 
 interface CartItem {
     id: string;
@@ -39,9 +41,9 @@ export function Cart() {
             {filteredCartItems.length > 0 && (
                 <div className="mt-4">
                     <h3 className="text-xl font-semibold">Total: ${totalPrice}</h3>
+                    <MercadoPagoButton price={Number(totalPrice)} />
                 </div>
             )}
         </div>
     );
 }
-

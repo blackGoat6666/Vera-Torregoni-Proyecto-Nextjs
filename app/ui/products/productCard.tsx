@@ -48,7 +48,6 @@ export default function ProductCard({ product }: {
             <MinusIcon className="w-6 h-6" />
           </button>
         </div>
-        <MercadoPagoButton product={product} />
       </div>
     </a>
   );
