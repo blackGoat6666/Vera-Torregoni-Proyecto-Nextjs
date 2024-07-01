@@ -33,24 +33,32 @@ export async function createProduct(formData: FormData) {
 
   let imageUrl = '';
 
-  // Save the image locally
-  if (image && typeof image !== 'string') {
-    const imagePath = path.join(process.cwd(), 'public', 'uploads', image.name);
-    const buffer = await image.arrayBuffer();
-    fs.writeFileSync(imagePath, Buffer.from(buffer));
-    imageUrl = `/uploads/${image.name}`;
-  }
-
   try {
+    // Save the image to the 'public' folder
+    if (image && typeof image !== 'string') {
+      const publicDir = path.join(process.cwd(), 'public');
+      if (!fs.existsSync(publicDir)) {
+        fs.mkdirSync(publicDir);
+      }
+
+      const imagePath = path.join(publicDir, image.name);
+      const buffer = await image.arrayBuffer();
+      fs.writeFileSync(imagePath, Buffer.from(buffer));
+      imageUrl = `/${image.name}`; // Adjust the path as necessary
+    }
+
+    // Insert into database
     await sql`
       INSERT INTO products (name, description, price, image_src, image_alt)
       VALUES (${name}, ${description}, ${price}, ${imageUrl}, ${imageAlt})
     `;
   } catch (error) {
+    console.error('Error creating product:', error);
     return {
       message: 'Database Error: Failed to Create Product.',
     };
   }
+
   revalidatePath('/admin/productos');
   redirect('/admin/productos');
 }
