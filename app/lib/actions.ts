@@ -24,30 +24,30 @@ const CreateProduct = FormSchemaProduct.omit({ id: true,});
   
 export async function createProduct(formData: FormData) {
   const { name, description, price, image, imageAlt } = CreateProduct.parse({
-    name: formData.get('name'),
-    description: formData.get('description'),
-    price: formData.get('price'),
+    name: formData.get('name') as string,
+    description: formData.get('description') as string,
+    price: parseFloat(formData.get('price') as string),
     image: formData.get('image'),
-    imageAlt: formData.get('imageAlt'),
+    imageAlt: formData.get('imageAlt') as string,
   });
 
   let imageUrl = '';
 
   try {
-    // Save the image to the 'public' folder
-    if (image && typeof image !== 'string') {
+    // Guardar la imagen en la carpeta 'public'
+    if (image instanceof File) { // Asegúrate de que 'image' sea un objeto File válido
       const publicDir = path.join(process.cwd(), 'public');
       if (!fs.existsSync(publicDir)) {
         fs.mkdirSync(publicDir);
       }
 
+      const buffer = await formData.get('image')?.arrayBuffer(); // Leer el contenido del archivo
       const imagePath = path.join(publicDir, image.name);
-      const buffer = await image.arrayBuffer();
-      fs.writeFileSync(imagePath, Buffer.from(buffer));
-      imageUrl = `/${image.name}`; // Adjust the path as necessary
+      fs.writeFileSync(imagePath, Buffer.from(buffer)); // Escribir el archivo en el sistema de archivos
+      imageUrl = `/${image.name}`; // Ajusta la ruta de la imagen según sea necesario
     }
 
-    // Insert into database
+    // Insertar en la base de datos
     await sql`
       INSERT INTO products (name, description, price, image_src, image_alt)
       VALUES (${name}, ${description}, ${price}, ${imageUrl}, ${imageAlt})
@@ -62,7 +62,6 @@ export async function createProduct(formData: FormData) {
   revalidatePath('/admin/productos');
   redirect('/admin/productos');
 }
-
   export async function updateProduct(id: string, formData: FormData) {
     const { name, description, price, image, imageAlt } = CreateProduct.parse({
       name: formData.get('name'),
