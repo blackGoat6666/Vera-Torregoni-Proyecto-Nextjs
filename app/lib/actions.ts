@@ -8,6 +8,7 @@ import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import fs from 'fs';
 import path from 'path';
+import cloudinary from './cloudinary';
 
  
 const FormSchemaProduct = z.object({
@@ -24,44 +25,40 @@ const CreateProduct = FormSchemaProduct.omit({ id: true,});
   
 export async function createProduct(formData: FormData) {
   const { name, description, price, image, imageAlt } = CreateProduct.parse({
-    name: formData.get('name') as string,
-    description: formData.get('description') as string,
-    price: parseFloat(formData.get('price') as string),
+    name: formData.get('name'),
+    description: formData.get('description'),
+    price: formData.get('price'),
     image: formData.get('image'),
-    imageAlt: formData.get('imageAlt') as string,
+    imageAlt: formData.get('imageAlt'),
   });
 
   let imageUrl = '';
 
+  // Subir la imagen a Cloudinary
+  if (image && typeof image !== 'string') {
+    const buffer = await image.arrayBuffer();
+    const result = await cloudinary.uploader.upload(`data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`, {
+      folder: 'uploads',
+      public_id: image.name,
+      overwrite: true,
+    });
+    imageUrl = result.secure_url;
+  }
+
   try {
-    // Guardar la imagen en la carpeta 'public'
-    if (image instanceof File) { // Asegúrate de que 'image' sea un objeto File válido
-      const publicDir = path.join(process.cwd(), 'public');
-      if (!fs.existsSync(publicDir)) {
-        fs.mkdirSync(publicDir);
-      }
-
-      const buffer = await formData.get('image')?.arrayBuffer(); // Leer el contenido del archivo
-      const imagePath = path.join(publicDir, image.name);
-      fs.writeFileSync(imagePath, Buffer.from(buffer)); // Escribir el archivo en el sistema de archivos
-      imageUrl = `/${image.name}`; // Ajusta la ruta de la imagen según sea necesario
-    }
-
-    // Insertar en la base de datos
     await sql`
       INSERT INTO products (name, description, price, image_src, image_alt)
       VALUES (${name}, ${description}, ${price}, ${imageUrl}, ${imageAlt})
     `;
   } catch (error) {
-    console.error('Error creating product:', error);
     return {
-      message: 'Database Error: Failed to Create Product.',
+      message: 'Error en la base de datos: Falló la creación del producto.',
     };
   }
-
   revalidatePath('/admin/productos');
   redirect('/admin/productos');
 }
+
   export async function updateProduct(id: string, formData: FormData) {
     const { name, description, price, image, imageAlt } = CreateProduct.parse({
       name: formData.get('name'),
@@ -113,7 +110,6 @@ export async function createProduct(formData: FormData) {
       }
       throw error;
     } finally {
-      revalidatePath('/admin/dashboard');
       redirect('/admin/dashboard');
     }
   }
