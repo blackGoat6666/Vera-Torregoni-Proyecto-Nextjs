@@ -6,42 +6,54 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
- 
+import fs from 'fs';
+import path from 'path';
+
  
 const FormSchemaProduct = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
   price: z.coerce.number(),
-  image: z.string(),
+  image: z.any(), //
   imageAlt: z.string(),
 });
  
 const CreateProduct = FormSchemaProduct.omit({ id: true,});
 
   
-  export async function createProduct(formData: FormData) {
-    const { name, description, price, image, imageAlt } = CreateProduct.parse({
-      name: formData.get('name'),
-      description: formData.get('description'),
-      price: formData.get('price'),
-      image: formData.get('image'),
-      imageAlt: formData.get('imageAlt'),
-    });
-   
-    try {
-      await sql`
-      INSERT INTO products (name, description, price, image_src, image_alt)
-      VALUES (${name}, ${description}, ${price}, ${image}, ${imageAlt})
-    `;
-    } catch (error) {
-      return {
-        message: 'Database Error: Failed to Create Invoice.',
-      };
-    }
-    revalidatePath('/admin/productos');
-    redirect('/admin/productos');
+export async function createProduct(formData: FormData) {
+  const { name, description, price, image, imageAlt } = CreateProduct.parse({
+    name: formData.get('name'),
+    description: formData.get('description'),
+    price: formData.get('price'),
+    image: formData.get('image'),
+    imageAlt: formData.get('imageAlt'),
+  });
+
+  let imageUrl = '';
+
+  // Save the image locally
+  if (image && typeof image !== 'string') {
+    const imagePath = path.join(process.cwd(), 'public', 'uploads', image.name);
+    const buffer = await image.arrayBuffer();
+    fs.writeFileSync(imagePath, Buffer.from(buffer));
+    imageUrl = `/uploads/${image.name}`;
   }
+
+  try {
+    await sql`
+      INSERT INTO products (name, description, price, image_src, image_alt)
+      VALUES (${name}, ${description}, ${price}, ${imageUrl}, ${imageAlt})
+    `;
+  } catch (error) {
+    return {
+      message: 'Database Error: Failed to Create Product.',
+    };
+  }
+  revalidatePath('/admin/productos');
+  redirect('/admin/productos');
+}
 
   export async function updateProduct(id: string, formData: FormData) {
     const { name, description, price, image, imageAlt } = CreateProduct.parse({
