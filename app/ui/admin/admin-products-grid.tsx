@@ -1,12 +1,17 @@
 import Image from 'next/image';
-import { lusitana } from '../fonts';
-import { fetchProducts } from '@/app/lib/data';
-import { TrashIcon, PencilSquareIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { fetchFilteredProducts } from '@/app/lib/data';
+import { PencilSquareIcon, PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { DeleteProduct } from './products-buttons';
 
-export default async function AdminProductsGrid() {
-  const products = await fetchProducts();
+export default async function AdminProductsGrid({
+  query,
+  currentPage,
+}: {
+  query: string;
+  currentPage: number;
+})  {
+  const products = await fetchFilteredProducts(query, currentPage);
 
   return (   
     <div style={{ marginRight: '15px', marginLeft:'-55px' }} className="container mx-auto px-4 pt-8">

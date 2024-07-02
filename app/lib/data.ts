@@ -23,11 +23,9 @@ export async function fetchRevenue() {
     // Don't do this in production :)
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -201,6 +199,29 @@ export async function fetchProductsPages(query: string) {
   }
 }
 
+export async function fetchProductsQueryAPI(query: string) {
+  noStore();
+  try {
+    const products = await sql`SELECT 
+    products.name, 
+    products.description, 
+    products.price
+    FROM products
+    WHERE
+      products.name ILIKE ${`%${query}%`} OR
+      products.description ILIKE ${`%${query}%`} OR
+      products.price::text ILIKE ${`%${query}%`} OR
+      products.image_src ILIKE ${`%${query}%`} OR
+      products.image_alt ILIKE ${`%${query}%`}
+  `;
+
+    return products.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch products.');
+  }
+}
+
 export async function fetchInvoiceById(id: string) {
   noStore();
   try {
@@ -300,11 +321,9 @@ export async function fetchProducts() {
     // Don't do this in production :)
 
     console.log('Fetching Products data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const products = await sql<Product>`SELECT * FROM products`;
 
-    console.log('Data fetch completed after 3 seconds.');
 
     return products.rows;
   } catch (error) {
@@ -312,6 +331,32 @@ export async function fetchProducts() {
     throw new Error('Failed to fetch Products data.');
   }
 }
+
+export async function fetchFirstTwentyProducts() {
+  // Add noStore() here to prevent the response from being cached.
+  // This is equivalent to in fetch(..., {cache: 'no-store'}).
+
+  noStore();
+  try {
+    // Artificially delay a response for demo purposes.
+    // Don't do this in production :)
+
+    console.log('Fetching Products data...');
+
+    const products = await sql<Product>`SELECT products.name, 
+    products.description, 
+    products.price 
+    FROM products LIMIT 20`;
+
+
+    return products.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch Products data.');
+  }
+}
+
+
 
 export async function fetchProductById(id: string) {
   noStore();

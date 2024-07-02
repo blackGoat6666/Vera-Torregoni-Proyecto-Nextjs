@@ -1,5 +1,5 @@
-import { Recetas } from "../ui/home/recetas";
-import Welcome from "../ui/home/welcome";
+import { Recetas } from "../../ui/home/recetas";
+import Welcome from "../../ui/home/welcome";
 
 export default function Page() {
     return (

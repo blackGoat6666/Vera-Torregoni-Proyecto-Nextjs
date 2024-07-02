@@ -3,9 +3,7 @@ import {
   InboxIcon,
 } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
-import { fetchCardData, fetchProducts } from '@/app/lib/data';
-import { Product } from '@/app/lib/definitions';
-import { products } from '@/app/lib/placeholder-data';
+import { fetchProducts } from '@/app/lib/data';
 
 const iconMap = {
   info: InboxIcon,

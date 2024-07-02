@@ -8,6 +8,7 @@ import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import fs from 'fs';
 import path from 'path';
+import cloudinary from './cloudinary';
 
  
 const FormSchemaProduct = z.object({
@@ -33,12 +34,15 @@ export async function createProduct(formData: FormData) {
 
   let imageUrl = '';
 
-  // Save the image locally
+  // Subir la imagen a Cloudinary
   if (image && typeof image !== 'string') {
-    const imagePath = path.join(process.cwd(), 'public', 'uploads', image.name);
     const buffer = await image.arrayBuffer();
-    fs.writeFileSync(imagePath, Buffer.from(buffer));
-    imageUrl = `/uploads/${image.name}`;
+    const result = await cloudinary.uploader.upload(`data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`, {
+      folder: 'uploads',
+      public_id: image.name,
+      overwrite: true,
+    });
+    imageUrl = result.secure_url;
   }
 
   try {
@@ -48,7 +52,7 @@ export async function createProduct(formData: FormData) {
     `;
   } catch (error) {
     return {
-      message: 'Database Error: Failed to Create Product.',
+      message: 'Error en la base de datos: Falló la creación del producto.',
     };
   }
   revalidatePath('/admin/productos');
