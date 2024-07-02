@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import {
-  CheckIcon,
-  ClockIcon,
   CurrencyDollarIcon,
   DocumentTextIcon,
   HeartIcon,

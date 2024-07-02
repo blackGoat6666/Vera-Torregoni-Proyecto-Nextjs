@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import { lusitana } from '../fonts';
-import { fetchFilteredProducts, fetchProducts } from '@/app/lib/data';
-import { TrashIcon, PencilSquareIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { fetchFilteredProducts } from '@/app/lib/data';
+import { PencilSquareIcon, PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { DeleteProduct } from './products-buttons';
 
